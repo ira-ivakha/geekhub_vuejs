@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>Bookmarks</title>
+</head>
+<body>
+
+<div id="app">
+
+    <heading v-bind:title="message"></heading>
+
+    <form v-on:submit.prevent="addLink()">
+        <input v-model="newTitle" type="text" placeholder="Enter Link Name">
+        <input v-model="newLink" type="text" value="" placeholder="Enter Link Address" id="linkInput">
+        <input type="submit" value="Add">
+    </form>
+    <!--v-for without components:-->
+    <!--<ul>-->
+        <!--<li v-for="item in list"><a v-bind:href="item.href" target="_blank">{{ item.title }}</a></li>-->
+    <!--</ul>-->
+
+    <!--v-for using components:-->
+    <ul>
+        <li is="new_link"
+            v-for="(item, index) in list "
+            v-bind:key="item.index"
+            v-bind:single="item"
+            v-on:remove="list.splice(index, 1)"
+        ></li>
+    </ul>
+
+</div>
+
+<script src="js/bundle.js"></script>
+</body>
+</html>
